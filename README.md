@@ -1,1 +1,1 @@
-# vim-suse
+# vim-suseInstall vim plugin : run ./install.sh
