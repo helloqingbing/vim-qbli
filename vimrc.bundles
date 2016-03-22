@@ -18,7 +18,7 @@ call plug#begin('~/.vim/plugged')
 
   " Parentheses auto highlight match
   Plug 'kien/rainbow_parentheses.vim'
-  Plug 'bronson/vim-trailing-whitespace'
+"  Plug 'bronson/vim-trailing-whitespace'
   Plug 'altercation/vim-colors-solarized'
   
   "Commnet batch"
@@ -82,7 +82,7 @@ Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
 " Plug '~/.vim/plugged/nerdtree'
   Plug '~/.vim/plugged/omnicppcomplete-041'
   Plug '~/.vim/plugged/hc'
-  Plug '~/.vim/plugged/vimgdb_runtime'
+  Plug '~/.vim/plugged/vimgdb'
 "
 " " Add plugins to &runtimepath
 call plug#end()
@@ -151,6 +151,15 @@ call plug#end()
     let g:miniBufExplMapWindowNavArrows = 1
     let g:miniBufExplMapCTabSwitchBufs = 1
     let g:miniBufExplModSelTarget = 1
+    let g:miniBufExplMapCTabSwitchBufs = 1
+
+    let g:bufExplorerMaxHeight=30
+
+    map <tab> :bn<CR>
+    map <tab> :bp<CR>
+    map <leader>c :CMiniBufExplorer<cr>
+    map <leader>u :UMiniBufExplorer<cr>
+    map <leader>t :TMiniBufExplorer<cr>
 " }}}
 "
 "
@@ -174,26 +183,26 @@ call plug#end()
 " }
 "  
 "  Rainbow_parentheses {{{
-    "let g:rbpt_colorpairs = [
-         "['brown',       'RoyalBlue3'],
-         "['Darkblue',    'SeaGreen3'],
-         "['darkgray',    'DarkOrchid3'],
-         "['darkgreen',   'firebrick3'],
-         "['darkcyan',    'RoyalBlue3'],
-         "['darkred',     'SeaGreen3'],
-         "['darkmagenta', 'DarkOrchid3'],
-         "['brown',       'firebrick3'],
-         "['gray',        'RoyalBlue3'],
-         "['black',       'SeaGreen3'],
-         "['darkmagenta', 'DarkOrchid3'],
-         "['Darkblue',    'firebrick3'],
-         "['darkgreen',   'RoyalBlue3'],
-         "['darkcyan',    'SeaGreen3'],
-         "['darkred',     'DarkOrchid3'],
-         "['red',         'firebrick3'],
-   "]
-   "let g:rbpt_max = 40
-   "let g:rbpt_loadcmd_toggle = 0
+    let g:rbpt_colorpairs = [
+                \  ['brown',       'RoyalBlue3'],
+                \  ['Darkblue',    'SeaGreen3'],
+                \  ['darkgray',    'DarkOrchid3'],
+                \  ['darkgreen',   'firebrick3'],
+                \  ['darkcyan',    'RoyalBlue3'],
+                \  ['darkred',     'SeaGreen3'],
+                \  ['darkmagenta', 'DarkOrchid3'],
+                \  ['brown',       'firebrick3'],
+                \  ['gray',        'RoyalBlue3'],
+                \  ['black',       'SeaGreen3'],
+                \  ['darkmagenta', 'DarkOrchid3'],
+                \  ['Darkblue',    'firebrick3'],
+                \  ['darkgreen',   'RoyalBlue3'],
+                \  ['darkcyan',    'SeaGreen3'],
+                \  ['darkred',     'DarkOrchid3'],
+                \  ['red',         'firebrick3'],
+                \   ]
+   let g:rbpt_max = 40
+   let g:rbpt_loadcmd_toggle = 0
 " }
                                                                                          
 if count(g:bundle_groups, 'php')
