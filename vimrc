@@ -229,8 +229,7 @@ imap <leader>q <ESC>:call QuitFile()<CR>
 vmap <leader>q <ESC>:call QuitFile()<CR>
 
 map <C-a> ggVG
-set tags=/c4_working/work_ilc4/sade/tags
-"set tags=/c4_working/work_ilc/sade/src/dart/Dart/server/src/tags
+set tags=/c4_working/work_ilc5/sade/src/tags
 map <F3> :tselect<CR>
 
 " F2 turn on/off line number
