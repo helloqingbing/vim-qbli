@@ -24,10 +24,9 @@ let mapleader = ','
 let g:mapleader = ','
 
 syntax on
-set tags=/c4_working/work_0/tags
 " install bundles
 if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
+    source ~/.vimrc.bundles
 endif
 
 "==========================================
@@ -51,6 +50,7 @@ set noswapfile
 set background=dark
 set t_Co=256
 colorscheme molokai
+set scrolloff=2
 
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 
@@ -59,7 +59,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 
 " set mouse-=a
 " set mouse=a
-  set mouse=n
+set mouse=n
 " Hide the mouse cursor while typing
 " set mousehide
 
@@ -82,6 +82,7 @@ set magic
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
+set wrap
 "==========================================
 " Display Settings
 "==========================================
@@ -97,12 +98,20 @@ set scrolloff=7
 
 " set winwidth=79
 
-set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+"set statusline=%<%F\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 " Always show the status line - use 2 lines for the status bar
 set laststatus=2
+function! CurDir()
+    let curdir = substitute(getcwd(), $HOME, "~", "g")
+    return curdir
+endfunction
+"[1] fsck_cbfstest.cxx |  pwd: /c4_working/work_ilc4/sade/src/dart/Dart/server/src/cbfs/test/fsck  | 108,101 43% | ascii=0,hex=0 | utf-8 | c4dev @ sles12-lij76-dev-01\
+"set statusline=[%n]\ %f%m%r%h\ \|\ \ pwd:\ %{CurDir()}\ \ \|%=\|\ %l,%c\ %p%%\ \|\ ascii=%b,hex=%b%{((&fenc==\"\")?\"\":\"\ \|\ \".&fenc)}\ \|\ %{$USER}\ @\ %{hostname()}\
+
+set statusline=[%n]\ %{CurDir()}//%f%m%r%h\ \ %=\ [%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P 
 
 set number
-set nowrap
+" set nowrap
 
 " brace match
 set showmatch
@@ -124,9 +133,12 @@ set foldenable
 " syntax    
 " diff      
 " marker    
-set foldmethod=indent
-set foldlevel=99
-
+set foldmethod=syntax
+set foldcolumn=0
+setlocal foldlevel=5
+set foldclose=""
+set nofoldenable
+nnoremap <space> @=(foldclosed(line("."))<0?'zc':'zo')<CR>
 " Smart indent
 set smartindent
 " never add copyindent, case error   " copy the previous indentation on autoindenting
@@ -206,6 +218,7 @@ map <leader>s :call SaveFile()<CR>
 imap <leader>s <ESC>:call SaveFile()<CR>
 vmap <leader>s <ESC>:call SaveFile()<CR>
 
+nnoremap <silent> <F12> :A<CR>
 
 func! QuitFile()
     exec 'q'
@@ -216,4 +229,18 @@ imap <leader>q <ESC>:call QuitFile()<CR>
 vmap <leader>q <ESC>:call QuitFile()<CR>
 
 map <C-a> ggVG
+set tags=/c4_working/work_ilc3/sade/src/tags
+map <F3> :tselect<CR>
 
+" F2 turn on/off line number
+function! HideNumber()
+    if(&relativenumber == &number)
+        set relativenumber! number!
+    elseif(&number)
+        set number!
+    else
+        set relativenumber!
+    endif
+    set number?
+endfunc
+nnoremap <F2> :call HideNumber()<CR>
