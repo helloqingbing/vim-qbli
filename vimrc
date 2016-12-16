@@ -40,7 +40,7 @@ filetype plugin indent on
 
 set autoread
 set shortmess=atI
-
+set paste
 "set backupext=.bak
 "set backupdir=/tmp/vimbk/
 
@@ -230,6 +230,7 @@ vmap <leader>q <ESC>:call QuitFile()<CR>
 
 map <C-a> ggVG
 set tags=/c4_working/work_ilc3/sade/src/tags
+"set tags=/c4_working/work_ilc4/safe/catmerge/layered/MLU/tags
 map <F3> :tselect<CR>
 
 " F2 turn on/off line number
